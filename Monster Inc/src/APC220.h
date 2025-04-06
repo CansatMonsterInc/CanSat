@@ -1,0 +1,41 @@
+#ifndef APC220_h
+#define APC220_h
+
+#include <Arduino.h>
+
+enum APC220_RF_BAUDRATE {
+    APC220_RF_BAUDRATE_1200,
+    APC220_RF_BAUDRATE_2400,
+    APC220_RF_BAUDRATE_4800,
+    APC220_RF_BAUDRATE_9600,
+    APC220_RF_BAUDRATE_19200
+};
+
+enum APC220_UART_BAUDRATE {
+    APC220_UART_BAUDRATE_1200 = 1200,
+    APC220_UART_BAUDRATE_2400 = 2400,
+    APC220_UART_BAUDRATE_4800 = 4800,
+    APC220_UART_BAUDRATE_9600 = 9600,
+    APC220_UART_BAUDRATE_19200 = 19200,
+    APC220_UART_BAUDRATE_38400 = 38400,
+    APC220_UART_BAUDRATE_57600 = 57600
+};
+
+enum APC220_PARITY {
+    APC220_PARITY_NO_CHECK,
+    APC220_PARITY_EVEN,
+    APC220_PARITY_ODD
+};
+
+
+class APC220 {
+    public:
+        APC220(int setPin, APC220_UART_BAUDRATE baudrate);
+        void configure(long freq, int power, APC220_RF_BAUDRATE rfBaudrate, APC220_PARITY parity);
+        
+    private:
+        int _setPin;
+        APC220_UART_BAUDRATE _baudrate;
+};
+
+#endif
